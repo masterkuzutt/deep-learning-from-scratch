@@ -19,6 +19,14 @@ def init_network():
 
 
 def predict(network, x):
+    print("x:",np.shape(x))
+    print("w1:",np.shape(network['W1']))
+    print("w2:",np.shape(network['W2']))
+    print("w3:",np.shape(network['W3']))
+    print("b1:",np.shape(network['b1']))
+    print("b2:",np.shape(network['b2']))
+    print("b3:",np.shape(network['b3']))
+
     W1, W2, W3 = network['W1'], network['W2'], network['W3']
     b1, b2, b3 = network['b1'], network['b2'], network['b3']
 
@@ -35,10 +43,18 @@ def predict(network, x):
 x, t = get_data()
 network = init_network()
 accuracy_cnt = 0
-for i in range(len(x)):
-    y = predict(network, x[i])
-    p= np.argmax(y) # 最も確率の高い要素のインデックスを取得
-    if p == t[i]:
-        accuracy_cnt += 1
+
+# for i in range(len(x)):
+#        y = predict(network, x[i])
+#     p= np.argmax(y) # 最も確率の高い要素のインデックスを取得
+#     if p == t[i]:
+#         accuracy_cnt += 1
+
+y = predict(network, x[0])
+p = np.argmax(y) # 最も確率の高い要素のインデックスを取得
+if p == t[0]:
+    accuracy_cnt += 1
+
+
 
 print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
